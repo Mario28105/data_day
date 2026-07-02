@@ -789,9 +789,12 @@ body {
 }
 
 @keyframes pulse-notif {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 2px 6px rgba(255, 107, 53, 0.4), 0 0 0 2px var(--white);
     }
+
     50% {
         box-shadow: 0 2px 6px rgba(255, 107, 53, 0.6), 0 0 0 4px rgba(255, 107, 53, 0.2);
     }
@@ -866,7 +869,7 @@ body {
     display: block;
 }
 
-.pc-info > span {
+.pc-info>span {
     font-size: 11px;
     color: var(--text-secondary);
     display: block;
@@ -1279,5 +1282,257 @@ body {
 
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ============================
+   DUAL CTA
+   ============================ */
+.dual-cta {
+    padding: 80px 0;
+    background: var(--lighter);
+}
+
+.dual-cta-row {
+    margin-top: 0 !important;
+}
+
+.cta-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    height: 100%;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cta-card:hover {
+    transform: translateY(-4px);
+}
+
+.cta-emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.cta-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.cta-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.cta-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.cta-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.cta-list li i {
+    color: var(--brand);
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* Accent vert pour la carte candidat */
+.cta-candidate {
+    border-top: 3px solid var(--brand);
+}
+
+/* Accent sombre pour la carte recruteur */
+.cta-recruiter {
+    border-top: 3px solid var(--dark);
+}
+
+.cta-recruiter .cta-list li i {
+    color: var(--dark);
+}
+
+/* Responsive */
+@media only screen and (max-width: 600px) {
+    .dual-cta {
+        padding: 52px 0;
+    }
+
+    .cta-card {
+        padding: 28px 22px;
+        margin-bottom: 20px;
+    }
+
+    .cta-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* ============================
+   FAQ — Collapsible Materialize
+   ============================ */
+.faq {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.faq-container {
+    max-width: 720px;
+}
+
+.faq-list {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.faq-list li {
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 12px !important;
+    overflow: hidden;
+}
+
+.faq-q {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 20px 24px !important;
+    background: var(--white) !important;
+    font-family: var(--font-display) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    border-bottom: none !important;
+    cursor: pointer;
+    transition: background var(--transition) !important;
+}
+
+.faq-q:hover {
+    background: var(--lighter) !important;
+}
+
+.faq-arrow {
+    color: var(--brand);
+    font-size: 13px;
+    transition: transform var(--transition);
+    flex-shrink: 0;
+}
+
+.faq-list li.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-list li.active .faq-q {
+    background: var(--brand-light) !important;
+    color: var(--brand-dark) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.faq-a {
+    background: var(--white) !important;
+    padding: 0 !important;
+}
+
+.faq-a p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    padding: 20px 24px;
+    margin: 0;
+}
+
+/* ============================
+   FOOTER CTA
+   ============================ */
+.footer-cta {
+    padding: 80px 0;
+    background: var(--brand);
+    text-align: center;
+}
+
+.footer-cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.footer-cta p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 36px;
+}
+
+.footer-cta-btns {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-cta .btn-primary {
+    background: var(--white);
+    color: var(--brand-dark);
+}
+
+.footer-cta .btn-primary:hover {
+    background: var(--lighter);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.footer-cta .btn-ghost {
+    color: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.footer-cta .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+}
+
+/* Responsive FAQ */
+@media only screen and (max-width: 600px) {
+    .faq {
+        padding: 52px 0;
+    }
+
+    .faq-q {
+        font-size: 14px !important;
+        padding: 16px 18px !important;
+    }
+
+    .faq-a p {
+        padding: 16px 18px;
+        font-size: 13px;
+    }
+
+    .footer-cta {
+        padding: 56px 0;
     }
 }

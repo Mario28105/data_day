@@ -1,0 +1,201 @@
+/* ==============================
+   CONTACT PAGE — contact.css
+   ============================== */
+
+.contact-section {
+    padding: calc(var(--nav-h) + 64px) 0 96px;
+    background: var(--white);
+    min-height: 100vh;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.contact-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.contact-header p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+}
+
+/* GRILLE CONTACT */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 56px;
+    align-items: start;
+}
+
+/* INFO SIDE */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--brand-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.contact-item-body h4 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+}
+
+.contact-item-body p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.contact-item-body a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: color var(--transition);
+}
+
+.contact-item-body a:hover {
+    color: var(--brand-dark);
+}
+
+/* FORM SIDE */
+.contact-form-card {
+    background: var(--lighter);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 40px 36px;
+}
+
+.contact-form-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+}
+
+/* Surcharge Materialize — inputs */
+.contact-form-card .input-field input,
+.contact-form-card .input-field textarea,
+.contact-form-card .input-field select {
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1.5px solid var(--border-strong) !important;
+    box-shadow: none !important;
+}
+
+.contact-form-card .input-field input:focus,
+.contact-form-card .input-field textarea:focus,
+.contact-form-card .input-field select:focus {
+    border-bottom-color: var(--brand) !important;
+    box-shadow: 0 1px 0 0 var(--brand) !important;
+}
+
+.contact-form-card .input-field label {
+    font-family: var(--font-body) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary) !important;
+}
+
+.contact-form-card .input-field label.active {
+    color: var(--brand) !important;
+}
+
+.contact-form-card .input-field .prefix {
+    color: var(--brand) !important;
+}
+
+.contact-form-card textarea.materialize-textarea {
+    min-height: 120px !important;
+}
+
+/* Dropdown select */
+.contact-form-card .select-wrapper input.select-dropdown {
+    font-size: 14px !important;
+    color: var(--text-primary) !important;
+}
+
+/* Bouton submit */
+.btn-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+/* Message succès */
+.contact-success {
+    display: none;
+    background: var(--brand-light);
+    border: 1px solid rgba(29, 158, 117, 0.25);
+    color: var(--brand-dark);
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.contact-success.show {
+    display: block;
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media only screen and (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-form-card {
+        padding: 28px 24px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .contact-section {
+        padding: calc(var(--nav-h) + 40px) 0 64px;
+    }
+
+    .contact-header {
+        margin-bottom: 40px;
+    }
+}
