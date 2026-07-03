@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Espace Candidat — Recurtia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        /* ══════════════════════════════════════════
+           RECURTIA — Dashboard Candidat Nettoyé
+           ══════════════════════════════════════════ */
+
+        :root {
+            --brand: #1D9E75;
+            --brand-dark: #0F6E56;
+            --brand-mid: #5DCAA5;
+            --brand-light: #E6F7F1;
+            --dark: #0F1117;
+            --bg: #F2F5F9;
+            --surface: #FFFFFF;
+            --surface2: #F8FAFC;
+            --light: #EEF2F7;
+            --accent: #FF6B35;
+
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
+
+            --border: rgba(17, 24, 39, .08);
+            --border-strong: rgba(17, 24, 39, .14);
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, .06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, .08);
+
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Instrument Sans', sans-serif;
+            --transition: .22s cubic-bezier(.4, 0, .2, 1);
+            --sidebar-w: 262px;
+            --topbar-h: 64px;
+        }
+
+        /* ── RESET ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--text-primary);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            padding-top: 0;
+            /* Plus de décalage inutile */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ── SIDEBAR ── */
+        .db-sidebar {
+            position: fixed;
+            top: 0 !important;
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-w);
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            height: 100vh;
+        }
+
+        .db-sidebar-inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 24px 0;
+        }
+
+        .db-logo {
+            padding: 0 24px;
+            margin-bottom: 20px;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--surface);
+        }
+
+        .db-logo-dot {
+            color: var(--brand);
+        }
+
+        .db-user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 14px 20px;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius-lg);
+        }
+
+        .db-user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--brand);
+            color: var(--surface);
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .db-user-name {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--surface);
+        }
+
+        .db-user-role {
+            font-size: 10.5px;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .db-nav {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .db-nav-section-label {
+            display: block;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .25);
+            padding: 16px 12px 5px;
+        }
+
+        .db-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 9px 12px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+            transition: all var(--transition);
+        }
+
+        .db-nav-link:hover {
+            background: rgba(255, 255, 255, .07);
+            color: var(--surface);
+        }
+
+        .db-nav-link.active {
+            background: rgba(29, 158, 117, .16);
+            color: var(--brand-mid);
+        }
+
+        .db-nav-link.active .material-icons {
+            color: var(--brand);
+        }
+
+        .db-nav-link--logout {
+            color: rgba(255, 100, 100, .5);
+        }
+
+        /* ── MAIN AREA ── */
+        .db-main {
+            margin-left: var(--sidebar-w);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .db-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            height: var(--topbar-h);
+            background: rgba(255, 255, 255, .96);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+        }
+
+        .db-breadcrumb {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .db-mode-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            font-family: var(--font-display);
+            font-size: 10px;
+            font-weight: 700;
+            background: var(--brand-light);
+            color: var(--brand-dark);
+        }
+
+        .db-content {
+            flex: 1;
+            padding: 28px 32px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── WELCOME & PROFILE MATCHING ── */
+        .db-welcome {
+            background: var(--dark);
+            border-radius: var(--radius-xl);
+            padding: 32px 36px;
+            margin-bottom: 24px;
+            color: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .db-welcome h1 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+
+        .db-welcome p strong {
+            color: var(--brand-mid);
+        }
+
+        .db-score-ring {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .db-score-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .db-score-number {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        /* ── MATCH LIST ── */
+        .db-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+        }
+
+        .db-match-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .db-match-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .db-match-item:hover {
+            border-color: var(--brand);
+            background: var(--brand-light);
+        }
+
+        .db-match-percent {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--brand);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .db-logo a {
+            text-decoration: none;
+            color: white;
+            /* ou la couleur de ton design */
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="db-sidebar">
+        <div class="db-sidebar-inner">
+            <a href="index.html">
+                <span>Recurtia</span><span class="db-logo-dot">.</span>
+            </a>
+
+            <div class="db-user-card">
+                <div class="db-user-avatar">FM</div>
+                <div class="db-user-info">
+                    <span class="db-user-name">Fanaja Misaina</span>
+                    <span class="db-user-role">Candidat</span>
+                </div>
+            </div>
+
+            <nav class="db-nav">
+                <span class="db-nav-section-label">Espace Personnel</span>
+                <a href="#" class="db-nav-link active">
+                    <i class="material-icons">dashboard</i>
+                    <span>Mon Tableau de bord</span>
+                </a>
+                <a href="#" class="db-nav-link">
+                    <i class="material-icons">star</i>
+                    <span>Mes Matchs</span>
+                </a>
+                <a href="#" class="db-nav-link">
+                    <i class="material-icons">work</i>
+                    <span>Candidatures</span>
+                </a>
+
+                <span class="db-nav-section-label">Compte</span>
+                <a href="#" class="db-nav-link">
+                    <i class="material-icons">account_circle</i>
+                    <span>Mon Profil</span>
+                </a>
+                <a href="#" class="db-nav-link db-nav-link--logout">
+                    <i class="material-icons">exit_to_app</i>
+                    <span>Déconnexion</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="db-main">
+        <div class="db-topbar">
+            <div class="db-topbar-left">
+                <span class="db-breadcrumb">Mon Espace</span>
+                <span class="db-mode-indicator"><i class="material-icons">school</i>Candidat</span>
+            </div>
+        </div>
+
+        <div class="db-content">
+            <div class="db-welcome">
+                <div>
+                    <h1>Content de vous revoir, Fanaja !</h1>
+                    <p>Votre profil est complété à <strong>85%</strong>. Les recruteurs peuvent cibler directement vos
+                        compétences.</p>
+                </div>
+                <div class="db-score-ring">
+                    <svg width="80" height="80">
+                        <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="6" />
+                        <circle cx="40" cy="40" r="34" fill="none" stroke="#1D9E75" stroke-width="6"
+                            stroke-dasharray="213.6" stroke-dashoffset="32" />
+                    </svg>
+                    <div class="db-score-inner">
+                        <span class="db-score-number">85%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="db-card">
+                <h2 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;">Offres Recommandées
+                    (Smart Matching)</h2>
+                <div class="db-match-list">
+                    <div class="db-match-item">
+                        <div>
+                            <strong style="display:block;">Développeur PHP / Mobile Web (PWA)</strong>
+                            <span style="font-size:12px; color:var(--text-secondary);">Studio BrainStorm Troop •
+                                Antananarivo</span>
+                        </div>
+                        <span class="db-match-percent">94% Match</span>
+                    </div>
+                    <div class="db-match-item">
+                        <div>
+                            <strong style="display:block;">Stagiaire Sécurité & Réseaux</strong>
+                            <span style="font-size:12px; color:var(--text-secondary);">SecureNet Solutions • À
+                                distance</span>
+                        </div>
+                        <span class="db-match-percent">88% Match</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

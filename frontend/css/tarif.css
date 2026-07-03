@@ -1,0 +1,254 @@
+/* ==============================
+   TARIF PAGE — tarif.css
+   ============================== */
+
+.pricing-section {
+    padding: calc(var(--nav-h) + 64px) 0 96px;
+    background: var(--lighter);
+    min-height: 100vh;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.pricing-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.pricing-header p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+}
+
+/* GRILLE CARDS */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: center;
+}
+
+/* CARD BASE */
+.pricing-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.pricing-card:hover {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
+}
+
+/* CARD POPULAIRE */
+.pricing-card.popular {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.04);
+    background: var(--white);
+}
+
+.pricing-card.popular:hover {
+    transform: scale(1.04) translateY(-6px);
+}
+
+/* BADGE POPULAIRE */
+.pricing-badge {
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    background: var(--brand);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 14px;
+    border-radius: var(--radius-full);
+}
+
+/* EN-TÊTE CARD */
+.pricing-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 8px 0 6px;
+}
+
+.pricing-description {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.5;
+    min-height: 36px;
+}
+
+/* PRIX */
+.pricing-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.pricing-period {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-weight: 500;
+}
+
+/* SÉPARATEUR */
+.pricing-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 24px;
+}
+
+/* LISTE FEATURES */
+.pricing-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+.pricing-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.pricing-feature i {
+    color: var(--brand);
+    font-size: 12px;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.pricing-card.popular .pricing-feature i {
+    color: var(--brand);
+}
+
+/* BOUTON */
+.pricing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--border-strong);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all var(--transition);
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.pricing-btn:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+    background: var(--brand-light);
+}
+
+.pricing-card.popular .pricing-btn {
+    background: var(--brand);
+    color: var(--white);
+    border-color: var(--brand);
+}
+
+.pricing-card.popular .pricing-btn:hover {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+    box-shadow: 0 6px 20px rgba(29, 158, 117, 0.35);
+}
+
+/* ==============================
+   SECTION FEATURES INCLUSES
+   ============================== */
+.pricing-features-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.pricing-features-section .section-header {
+    margin-bottom: 48px;
+}
+
+.pricing-features-section .feature-card {
+    text-align: center;
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media only screen and (max-width: 992px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+        gap: 32px;
+    }
+
+    .pricing-card.popular {
+        transform: none;
+        order: -1;
+    }
+
+    .pricing-card.popular:hover {
+        transform: translateY(-6px);
+    }
+
+    .pricing-section {
+        padding: calc(var(--nav-h) + 40px) 0 64px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .pricing-header {
+        margin-bottom: 40px;
+    }
+
+    .pricing-card {
+        padding: 28px 22px;
+    }
+
+    .pricing-price {
+        font-size: 1.7rem;
+    }
+
+    .pricing-features-section {
+        padding: 56px 0;
+    }
+}
