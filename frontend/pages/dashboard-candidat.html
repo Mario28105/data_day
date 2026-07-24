@@ -343,99 +343,343 @@
 <body>
 
     <div class="db-sidebar">
-        <div class="db-sidebar-inner">
-            <a href="index.html">
-                <span>Recurtia</span><span class="db-logo-dot">.</span>
+
+    <div class="db-sidebar-inner">
+
+        <a href="{{ route('dashboard') }}" class="db-logo">
+            <span>Recurtia</span><span class="db-logo-dot">.</span>
+        </a>
+
+
+        <div class="db-user-card">
+
+            <div class="db-user-avatar">
+                {{ strtoupper(substr(Auth::user()->name,0,2)) }}
+            </div>
+
+            <div class="db-user-info">
+
+                <span class="db-user-name">
+                    {{ Auth::user()->name }}
+                </span>
+
+                <span class="db-user-role">
+                    Candidat
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <nav class="db-nav">
+
+
+            <span class="db-nav-section-label">
+                Espace Personnel
+            </span>
+
+
+
+            <!-- Dashboard -->
+
+            <a href="{{ route('dashboard') }}" 
+               class="db-nav-link active">
+
+                <i class="material-icons">
+                    dashboard
+                </i>
+
+                <span>
+                    Mon Tableau de bord
+                </span>
+
             </a>
 
-            <div class="db-user-card">
-                <div class="db-user-avatar">FM</div>
-                <div class="db-user-info">
-                    <span class="db-user-name">Fanaja Misaina</span>
-                    <span class="db-user-role">Candidat</span>
-                </div>
-            </div>
 
-            <nav class="db-nav">
-                <span class="db-nav-section-label">Espace Personnel</span>
-                <a href="#" class="db-nav-link active">
-                    <i class="material-icons">dashboard</i>
-                    <span>Mon Tableau de bord</span>
-                </a>
-                <a href="#" class="db-nav-link">
-                    <i class="material-icons">star</i>
-                    <span>Mes Matchs</span>
-                </a>
-                <a href="#" class="db-nav-link">
-                    <i class="material-icons">work</i>
-                    <span>Candidatures</span>
-                </a>
 
-                <span class="db-nav-section-label">Compte</span>
-                <a href="#" class="db-nav-link">
-                    <i class="material-icons">account_circle</i>
-                    <span>Mon Profil</span>
-                </a>
-                <a href="#" class="db-nav-link db-nav-link--logout">
-                    <i class="material-icons">exit_to_app</i>
-                    <span>Déconnexion</span>
-                </a>
-            </nav>
-        </div>
+            <!-- Matchs -->
+
+            <a href="{{ route('dashboard') }}" 
+               class="db-nav-link">
+
+                <i class="material-icons">
+                    star
+                </i>
+
+                <span>
+                    Mes Matchs
+                </span>
+
+            </a>
+
+
+
+
+            <!-- Candidatures -->
+
+            <a href="{{ route('candidatures.index') }}" 
+               class="db-nav-link">
+
+                <i class="material-icons">
+                    work
+                </i>
+
+                <span>
+                    Candidatures
+                </span>
+
+            </a>
+
+
+
+
+            <span class="db-nav-section-label">
+                Compte
+            </span>
+
+
+
+            <!-- Profil -->
+
+            <a href="{{ route('profile.edit') }}" 
+               class="db-nav-link">
+
+                <i class="material-icons">
+                    account_circle
+                </i>
+
+                <span>
+                    Mon Profil
+                </span>
+
+            </a>
+
+
+
+
+            <!-- Déconnexion -->
+
+            <form method="POST" action="{{ route('logout') }}">
+
+                @csrf
+
+                <button type="submit"
+                    class="db-nav-link db-nav-link--logout"
+                    style="background:none;border:none;width:100%;cursor:pointer;">
+
+                    <i class="material-icons">
+                        exit_to_app
+                    </i>
+
+                    <span>
+                        Déconnexion
+                    </span>
+
+                </button>
+
+            </form>
+
+
+
+        </nav>
+
+
     </div>
 
-    <div class="db-main">
-        <div class="db-topbar">
-            <div class="db-topbar-left">
-                <span class="db-breadcrumb">Mon Espace</span>
-                <span class="db-mode-indicator"><i class="material-icons">school</i>Candidat</span>
-            </div>
+</div>
+
+
+
+
+
+<div class="db-main">
+
+
+    <div class="db-topbar">
+
+        <div class="db-topbar-left">
+
+            <span class="db-breadcrumb">
+                Mon Espace
+            </span>
+
+
+            <span class="db-mode-indicator">
+
+                <i class="material-icons">
+                    school
+                </i>
+
+                Candidat
+
+            </span>
+
+
         </div>
 
-        <div class="db-content">
-            <div class="db-welcome">
-                <div>
-                    <h1>Content de vous revoir, Fanaja !</h1>
-                    <p>Votre profil est complété à <strong>85%</strong>. Les recruteurs peuvent cibler directement vos
-                        compétences.</p>
-                </div>
-                <div class="db-score-ring">
-                    <svg width="80" height="80">
-                        <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="6" />
-                        <circle cx="40" cy="40" r="34" fill="none" stroke="#1D9E75" stroke-width="6"
-                            stroke-dasharray="213.6" stroke-dashoffset="32" />
-                    </svg>
-                    <div class="db-score-inner">
-                        <span class="db-score-number">85%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="db-card">
-                <h2 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;">Offres Recommandées
-                    (Smart Matching)</h2>
-                <div class="db-match-list">
-                    <div class="db-match-item">
-                        <div>
-                            <strong style="display:block;">Développeur PHP / Mobile Web (PWA)</strong>
-                            <span style="font-size:12px; color:var(--text-secondary);">Studio BrainStorm Troop •
-                                Antananarivo</span>
-                        </div>
-                        <span class="db-match-percent">94% Match</span>
-                    </div>
-                    <div class="db-match-item">
-                        <div>
-                            <strong style="display:block;">Stagiaire Sécurité & Réseaux</strong>
-                            <span style="font-size:12px; color:var(--text-secondary);">SecureNet Solutions • À
-                                distance</span>
-                        </div>
-                        <span class="db-match-percent">88% Match</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
+
+
+
+
+    <div class="db-content">
+
+
+
+        <div class="db-welcome">
+
+
+            <div>
+
+                <h1>
+                    Content de vous revoir,
+                    {{ Auth::user()->name }} !
+                </h1>
+
+
+                <p>
+                    Votre profil est complété à
+                    <strong>85%</strong>.
+                    Les recruteurs peuvent cibler directement vos compétences.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="db-score-ring">
+
+
+                <svg width="80" height="80">
+
+                    <circle 
+                        cx="40"
+                        cy="40"
+                        r="34"
+                        fill="none"
+                        stroke="rgba(255,255,255,0.1)"
+                        stroke-width="6" />
+
+
+                    <circle 
+                        cx="40"
+                        cy="40"
+                        r="34"
+                        fill="none"
+                        stroke="#1D9E75"
+                        stroke-width="6"
+                        stroke-dasharray="213.6"
+                        stroke-dashoffset="32" />
+
+                </svg>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <!-- OFFRES -->
+
+        <div class="db-card">
+
+
+            <h2 style="font-family: var(--font-display); font-size:1.25rem; font-weight:700;">
+
+                Offres Recommandées (Smart Matching)
+
+            </h2>
+
+
+
+
+            <div class="db-match-list">
+
+
+                @forelse($offres as $offre)
+
+
+
+                    <div class="db-match-item">
+
+
+                        <div>
+
+
+                            <strong style="display:block;">
+
+                                {{ $offre->titre }}
+
+                            </strong>
+
+
+
+                            <span style="font-size:12px;color:var(--text-secondary);">
+
+                                {{ $offre->entreprise }}
+
+                                •
+
+                                {{ $offre->localisation }}
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <span class="db-match-percent">
+
+                            Nouveau
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+                @empty
+
+
+
+                    <div class="db-match-item">
+
+                        <p>
+                            Aucune offre disponible.
+                        </p>
+
+                    </div>
+
+
+
+                @endforelse
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
 </body>
 
 </html>
