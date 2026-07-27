@@ -1,45 +1,138 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="fr">
+
 <head>
-    <title>Mes candidatures</title>
+
+<meta charset="UTF-8">
+
+
+<title>Mes candidatures</title>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+
+background:#f5f7fb;
+
+padding:40px;
+
+}
+
+
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+
+box-shadow:0 5px 20px #0002;
+
+}
+
+
+.status{
+
+background:#e6f7f1;
+
+color:#087857;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+}
+
+
+</style>
+
 </head>
+
+
 
 <body>
 
-<h1>Mes candidatures</h1>
+
+
+<a href="{{route('dashboard')}}">
+← Retour dashboard
+</a>
+
+
+
+<h1>
+Mes candidatures
+</h1>
+
+
 
 
 @forelse($candidatures as $candidature)
 
-<div>
 
-<h3>
-{{ $candidature->offre->titre }}
-</h3>
+
+<div class="card">
+
+
+<h2>
+
+{{$candidature->offre->titre}}
+
+</h2>
+
+
 
 <p>
+
 Entreprise :
-{{ $candidature->offre->entreprise }}
+{{$candidature->offre->entreprise}}
+
 </p>
 
+
+
 <p>
-Statut :
-{{ $candidature->statut }}
+
+Envoyée le :
+
+{{$candidature->created_at->format('d/m/Y')}}
+
 </p>
+
+
+
+<span class="status">
+
+{{$candidature->statut}}
+
+</span>
+
+
 
 </div>
 
-<hr>
 
 
 @empty
 
+
 <p>
-Vous n'avez envoyé aucune candidature.
+Aucune candidature pour le moment.
 </p>
+
 
 @endforelse
 
 
+
 </body>
+
 </html>

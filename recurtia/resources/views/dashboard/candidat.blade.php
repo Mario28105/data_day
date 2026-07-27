@@ -4,10 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dashboard Candidat - Recurtia</title>
+<title>Recrutia - Espace Candidat</title>
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,24 +14,20 @@
 
 <style>
 
-
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
 
 body{
 
-    margin:0;
-
-    font-family:Arial, sans-serif;
-
-    background:#f2f5f9;
-
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
     color:#111827;
 
 }
-
 
 
 /* SIDEBAR */
@@ -40,12 +35,10 @@ body{
 .db-sidebar{
 
     position:fixed;
-
-    left:0;
     top:0;
+    left:0;
 
-    width:260px;
-
+    width:270px;
     height:100vh;
 
     background:#0F1117;
@@ -53,7 +46,6 @@ body{
     color:white;
 
 }
-
 
 
 .db-sidebar-inner{
@@ -67,17 +59,15 @@ body{
 .db-logo{
 
     color:white;
-
-    font-size:26px;
-
-    font-weight:bold;
-
     text-decoration:none;
+
+    font-size:28px;
+    font-weight:bold;
 
 }
 
 
-.db-logo-dot{
+.db-logo span{
 
     color:#1D9E75;
 
@@ -85,15 +75,18 @@ body{
 
 
 
+
+/* USER */
+
 .db-user-card{
 
-    margin-top:30px;
+    margin-top:35px;
 
-    background:#1b1f27;
+    padding:20px;
 
-    padding:15px;
+    background:#1b202b;
 
-    border-radius:15px;
+    border-radius:20px;
 
     display:flex;
 
@@ -107,9 +100,8 @@ body{
 
 .db-user-avatar{
 
-    width:45px;
-
-    height:45px;
+    width:55px;
+    height:55px;
 
     border-radius:50%;
 
@@ -127,11 +119,12 @@ body{
 
 
 
+
 .db-user-name{
 
-    font-weight:bold;
-
     display:block;
+
+    font-weight:bold;
 
 }
 
@@ -149,23 +142,12 @@ body{
 
 
 
+/* MENU */
+
+
 .db-nav{
 
-    margin-top:30px;
-
-}
-
-
-
-.db-nav-section-label{
-
-    color:#777;
-
-    font-size:12px;
-
-    margin:20px 0 10px;
-
-    display:block;
+    margin-top:40px;
 
 }
 
@@ -177,19 +159,17 @@ body{
 
     align-items:center;
 
-    gap:10px;
+    gap:12px;
 
-    padding:12px;
+    padding:14px;
 
-    width:100%;
+    margin-top:10px;
 
     color:#ddd;
 
     text-decoration:none;
 
-    border-radius:10px;
-
-    margin-bottom:5px;
+    border-radius:12px;
 
 }
 
@@ -208,9 +188,11 @@ body{
 
 button.db-nav-link{
 
-    background:none;
+    width:100%;
 
     border:none;
+
+    background:none;
 
     cursor:pointer;
 
@@ -221,45 +203,45 @@ button.db-nav-link{
 
 
 
-
 /* MAIN */
 
 
 .db-main{
 
-    margin-left:260px;
+    margin-left:270px;
 
 }
+
 
 
 
 .db-topbar{
 
-    height:70px;
+    height:75px;
 
     background:white;
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-    padding:0 30px;
+    padding:0 40px;
+
+    box-shadow:0 3px 10px #0001;
 
 }
 
 
 
-.db-mode-indicator{
+.db-mode{
 
-    margin-left:15px;
+    margin-left:20px;
 
     background:#e6f7f1;
 
-    color:#0F6E56;
+    color:#087857;
 
-    padding:7px 15px;
+    padding:8px 20px;
 
     border-radius:20px;
 
@@ -267,84 +249,65 @@ button.db-nav-link{
 
 
 
-.btn-home{
-
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    background:#1D9E75;
-
-    color:white;
-
-    padding:10px 18px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-
-}
-
-
-
-.btn-home:hover{
-
-    background:#157a5b;
-
-}
-
-
+/* CONTENT */
 
 
 .db-content{
 
-    padding:30px;
+    padding:40px;
 
 }
 
 
 
-.db-welcome{
+/* WELCOME */
 
 
-    background:#0F1117;
+.welcome{
+
+
+    background:linear-gradient(135deg,#0F1117,#263040);
 
     color:white;
 
-    padding:30px;
+    padding:35px;
 
-    border-radius:20px;
-
+    border-radius:25px;
 
 }
 
 
 
-.db-card{
+.welcome h1{
+
+    font-size:30px;
+
+    margin-bottom:15px;
+
+}
 
 
-    margin-top:25px;
+
+/* OFFRES */
+
+
+.card{
+
+    margin-top:30px;
 
     background:white;
 
-    padding:25px;
+    padding:30px;
 
-    border-radius:20px;
+    border-radius:25px;
 
+    box-shadow:0 10px 25px #0001;
 
 }
 
 
 
-
-.db-match-item{
-
+.offer{
 
     display:flex;
 
@@ -352,14 +315,23 @@ button.db-nav-link{
 
     align-items:center;
 
-    padding:15px;
+    padding:20px;
 
-    border:1px solid #ddd;
+    background:#fafafa;
 
-    border-radius:12px;
+    border-radius:15px;
 
     margin-top:15px;
 
+    border:1px solid #eee;
+
+}
+
+
+
+.offer h3{
+
+    margin-bottom:8px;
 
 }
 
@@ -372,12 +344,27 @@ button.db-nav-link{
 
     color:white;
 
-    padding:8px 15px;
+    padding:10px 20px;
 
-    border-radius:10px;
+    border-radius:20px;
 
     text-decoration:none;
 
+}
+
+
+
+.badge{
+
+    background:#e6f7f1;
+
+    color:#087857;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-weight:bold;
 
 }
 
@@ -389,11 +376,13 @@ button.db-nav-link{
 </head>
 
 
+
 <body>
 
 
 
 <!-- SIDEBAR -->
+
 
 <div class="db-sidebar">
 
@@ -402,9 +391,9 @@ button.db-nav-link{
 
 
 
-<a href="{{route('dashboard')}}" class="db-logo">
+<a href="{{ route('dashboard') }}" class="db-logo">
 
-Recurtia<span class="db-logo-dot">.</span>
+Recrutia<span>.</span>
 
 </a>
 
@@ -427,7 +416,7 @@ Recurtia<span class="db-logo-dot">.</span>
 
 <span class="db-user-name">
 
-{{Auth::user()->name}}
+{{ Auth::user()->name }}
 
 </span>
 
@@ -453,15 +442,8 @@ Candidat
 
 
 
-<span class="db-nav-section-label">
-
-Espace Personnel
-
-</span>
-
-
-
-<a href="{{route('dashboard')}}" class="db-nav-link active">
+<a href="{{ route('dashboard') }}"
+class="db-nav-link active">
 
 <i class="material-icons">
 dashboard
@@ -474,13 +456,17 @@ Dashboard
 
 
 
-<a href="{{route('dashboard')}}" class="db-nav-link">
+<a href="#"
+class="db-nav-link">
+
 
 <i class="material-icons">
 star
 </i>
 
+
 Mes Matchs
+
 
 </a>
 
@@ -488,13 +474,17 @@ Mes Matchs
 
 
 
-<a href="{{route('candidatures.index')}}" class="db-nav-link">
+<a href="{{ route('candidatures.index') }}"
+class="db-nav-link">
+
 
 <i class="material-icons">
 work
 </i>
 
+
 Mes candidatures
+
 
 </a>
 
@@ -503,21 +493,14 @@ Mes candidatures
 
 
 
-<span class="db-nav-section-label">
-
-Compte
-
-</span>
-
-
-
-
-<a href="{{route('profile.edit')}}" class="db-nav-link">
+<a href="{{ route('profile.edit') }}"
+class="db-nav-link">
 
 
 <i class="material-icons">
 account_circle
 </i>
+
 
 Mon Profil
 
@@ -529,7 +512,8 @@ Mon Profil
 
 
 
-<form method="POST" action="{{route('logout')}}">
+
+<form method="POST" action="{{ route('logout') }}">
 
 @csrf
 
@@ -538,9 +522,7 @@ Mon Profil
 
 
 <i class="material-icons">
-
-exit_to_app
-
+logout
 </i>
 
 
@@ -551,6 +533,7 @@ Déconnexion
 
 
 </form>
+
 
 
 
@@ -567,7 +550,6 @@ Déconnexion
 
 
 
-
 <!-- CONTENU -->
 
 
@@ -578,15 +560,12 @@ Déconnexion
 <div class="db-topbar">
 
 
-<div>
+<b>
+Mon espace candidat
+</b>
 
 
-<strong>
-Mon espace
-</strong>
-
-
-<span class="db-mode-indicator">
+<span class="db-mode">
 
 Candidat
 
@@ -599,48 +578,27 @@ Candidat
 
 
 
-<a href="{{route('home')}}" class="btn-home">
-
-<i class="material-icons">
-
-home
-
-</i>
-
-Accueil
-
-</a>
-
-
-
-</div>
-
-
-
-
-
-
-
-
 <div class="db-content">
 
 
-<div class="db-welcome">
+
+
+
+<div class="welcome">
 
 
 <h1>
 
-Content de vous revoir {{Auth::user()->name}} !
+Bienvenue {{ Auth::user()->name }} 👋
 
 </h1>
 
 
 <p>
 
-Votre profil est complété à <strong>85%</strong>
+Découvrez les offres qui correspondent à votre profil.
 
 </p>
-
 
 
 </div>
@@ -651,7 +609,7 @@ Votre profil est complété à <strong>85%</strong>
 
 
 
-<div class="db-card">
+<div class="card">
 
 
 <h2>
@@ -666,28 +624,39 @@ Offres recommandées
 @forelse($offres as $offre)
 
 
-<div class="db-match-item">
+
+<div class="offer">
 
 
 <div>
 
 
-<strong>
+<h3>
 
-{{$offre->titre}}
+{{ $offre->titre }}
 
-</strong>
+</h3>
 
 
 <p>
 
-{{$offre->entreprise}}
+{{ $offre->entreprise }}
 
 -
 
-{{$offre->localisation}}
+{{ $offre->localisation }}
 
 </p>
+
+
+
+<a class="btn"
+href="{{ route('offres.show',$offre->id) }}">
+
+Voir l'offre
+
+</a>
+
 
 
 </div>
@@ -695,11 +664,11 @@ Offres recommandées
 
 
 
-<a href="{{route('offres.show',$offre->id)}}" class="btn">
+<span class="badge">
 
-Postuler
+Nouveau
 
-</a>
+</span>
 
 
 
@@ -712,17 +681,19 @@ Postuler
 
 <p>
 
-Aucune offre disponible
+Aucune offre disponible.
 
 </p>
-
 
 
 @endforelse
 
 
 
+
 </div>
+
+
 
 
 
