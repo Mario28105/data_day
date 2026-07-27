@@ -54,4 +54,9 @@ class User extends Authenticatable
         return $this->hasMany(Candidature::class);
     }
 
+    public function candidat()
+    {
+         return $this->hasOne(Candidat::class);
+    }
+
 }

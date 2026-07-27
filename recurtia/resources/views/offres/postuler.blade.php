@@ -5,74 +5,51 @@
 
 <title>Postuler</title>
 
-
 <style>
 
 body{
 
 font-family:Arial;
-
-background:#f2f5f9;
-
-padding:40px;
+background:#f4f7fb;
 
 }
 
 
+.container{
 
-.card{
-
+width:600px;
+margin:50px auto;
 background:white;
-
-max-width:700px;
-
-margin:auto;
-
 padding:30px;
-
 border-radius:20px;
 
 }
 
 
-
 input,textarea{
 
 width:100%;
-
 padding:12px;
-
-margin-top:10px;
-
-margin-bottom:20px;
+margin:10px 0;
 
 border:1px solid #ddd;
-
 border-radius:10px;
 
 }
-
 
 
 button{
 
 background:#1D9E75;
-
 color:white;
-
 border:none;
-
-padding:15px 25px;
-
+padding:12px 25px;
 border-radius:10px;
-
 cursor:pointer;
 
 }
 
-
 </style>
-
 
 </head>
 
@@ -80,35 +57,23 @@ cursor:pointer;
 <body>
 
 
-<div class="card">
+<div class="container">
 
 
 <h1>
-
-{{$offre->titre}}
-
+Postuler à :
+{{ $offre->titre }}
 </h1>
 
 
-<h3>
-
-{{$offre->entreprise}}
-
-</h3>
-
-
 <p>
-
-{{$offre->localisation}}
-
+{{ $offre->entreprise }}
 </p>
 
 
 
 <form method="POST"
-
-action="{{route('offres.postuler',$offre->id)}}"
-
+action="{{ route('offres.postuler',$offre->id) }}"
 enctype="multipart/form-data">
 
 
@@ -117,48 +82,36 @@ enctype="multipart/form-data">
 
 
 <label>
-
-CV (PDF)
-
+Votre CV (PDF)
 </label>
 
 
-<input type="file"
-
+<input 
+type="file"
 name="cv"
-
 accept=".pdf"
-
-required>
-
+required
+>
 
 
 
 <label>
-
 Lettre de motivation
-
 </label>
 
 
 <textarea
-
 name="lettre_motivation"
-
-rows="6"
-
-required>
-
-</textarea>
-
+rows="8"
+required
+></textarea>
 
 
 
 <button>
-
 Envoyer ma candidature
-
 </button>
+
 
 
 </form>
@@ -167,8 +120,6 @@ Envoyer ma candidature
 </div>
 
 
-
 </body>
-
 
 </html>

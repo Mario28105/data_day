@@ -1,7 +1,15 @@
-@props(['status'])
+@if (session('status'))
 
-@if ($status)
-    <div {{ $attributes->merge(['class' => 'font-medium text-sm text-green-600 dark:text-green-400']) }}>
-        {{ $status }}
+    <div style="
+        padding:10px;
+        background:#d1fae5;
+        color:#065f46;
+        border-radius:8px;
+        margin-bottom:15px;
+    ">
+
+        {{ session('status') }}
+
     </div>
+
 @endif
