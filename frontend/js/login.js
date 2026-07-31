@@ -1,127 +1,47 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // 1. Re-initialiser les champs Materialize (active les labels si pré-remplis)
+    M.updateTextFields();
 
-    // ── NAVBAR SCROLL ──
-    var navbar = document.getElementById('navbar');
-    if (navbar) {
-        window.addEventListener('scroll', function () {
-            navbar.classList.toggle('scrolled', window.scrollY > 10);
-        });
-    }
+    // 2. Masquer / Afficher le mot de passe
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
 
-    // ── TOGGLE MOT DE PASSE ──
-    var togglePasswordBtn = document.getElementById('togglePassword');
-    if (togglePasswordBtn) {
-        togglePasswordBtn.addEventListener('click', function () {
-            var input = document.getElementById('password');
-            var icon = document.getElementById('eyeIcon');
-            if (input && icon) {
-                var visible = input.type === 'text';
-                input.type = visible ? 'password' : 'text';
-                icon.classList.toggle('fa-eye', visible);
-                icon.classList.toggle('fa-eye-slash', !visible);
-            }
-        });
-    }
-
-    /**
-     * Gère la redirection dynamique selon le type d'utilisateur
-     * @param {string} type - 'recruteur' ou 'candidat'
-     */
-    function redirectUserDashboard(type) {
-        if (type === 'recruteur') {
-            window.location.href = '../pages/dashboard-recruteur.html';
-        } else {
-            window.location.href = '../pages/dashboard-candidat.html';
-        }
-    }
-
-    // ── CONNEXION DÉMO (CANDIDAT PAR DÉFAUT) ──
-    var demoBtn = document.getElementById('demoBtn');
-    if (demoBtn) {
-        demoBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            var demoUser = { firstName: 'Demo', lastName: 'User', email: 'demo@recrutia.mg', type: 'candidat' };
-            localStorage.setItem('currentUser', JSON.stringify(demoUser));
-            localStorage.setItem('rc_user', JSON.stringify(demoUser));
+    if (togglePassword && passwordInput && eyeIcon) {
+        togglePassword.addEventListener('click', function () {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
             
-            showAlert('success', 'Connexion démo réussie ! Redirection...');
-            setTimeout(function () { 
-                redirectUserDashboard(demoUser.type); 
-            }, 1200);
+            // Basculer l'icône FontAwesome
+            eyeIcon.classList.toggle('fa-eye-slash', !isPassword);
+            eyeIcon.classList.toggle('fa-eye', isPassword);
         });
     }
 
-    // ── SOUMISSION DU FORMULAIRE DE CONNEXION ──
-    var loginForm = document.getElementById('loginForm');
+    // 3. Gestion du bouton Démo (Remplissage automatique)
+    const demoBtn = document.getElementById('demoBtn');
+    const emailInput = document.getElementById('email');
+    const loginForm = document.getElementById('loginForm');
+
+    if (demoBtn && emailInput && passwordInput) {
+        demoBtn.addEventListener('click', function () {
+            emailInput.value = 'demo@recrutia.mg';
+            passwordInput.value = 'password123';
+            M.updateTextFields(); // Force Materialize à remonter les labels
+
+            // Soumettre automatiquement ou laisser l'utilisateur cliquer
+            // loginForm.submit(); 
+        });
+    }
+
+    // 4. Désactiver le bouton au submit pour éviter les doubles envois
     if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            var btn = document.getElementById('submitBtn');
-            var emailInput = document.getElementById('email');
-            var passwordInput = document.getElementById('password');
-
-            if (!emailInput || !passwordInput) return;
-
-            var email = emailInput.value.trim();
-            var password = passwordInput.value;
-
-            if (!email || !password) {
-                showAlert('error', 'Veuillez remplir votre email et mot de passe.');
-                return;
+        loginForm.addEventListener('submit', function () {
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
             }
-
-            if (btn) {
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i>Connexion en cours...';
-                btn.disabled = true;
-            }
-
-            setTimeout(function () {
-                var stored = localStorage.getItem('rc_user');
-                
-                // 1. Vérification de l'utilisateur existant en base locale
-                if (stored) {
-                    var user = JSON.parse(stored);
-                    if (user.email === email) {
-                        showAlert('success', 'Bienvenue ' + (user.firstName || 'à vous') + ' ! Redirection...');
-                        setTimeout(function () { 
-                            redirectUserDashboard(user.type); 
-                        }, 1200);
-                        return;
-                    }
-                }
-                
-                // 2. Fallback Démo intelligent (Déduction automatique du rôle pour les tests)
-                var lowerEmail = email.toLowerCase();
-                var computedType = (lowerEmail.includes('recruteur') || lowerEmail.includes('hr') || lowerEmail.includes('pro')) 
-                    ? 'recruteur' 
-                    : 'candidat';
-
-                var newUser = { 
-                    firstName: 'Utilisateur', 
-                    email: email, 
-                    type: computedType 
-                };
-                
-                localStorage.setItem('rc_user', JSON.stringify(newUser));
-                localStorage.setItem('currentUser', JSON.stringify(newUser));
-                
-                showAlert('success', 'Connexion réussie ! Redirection...');
-                setTimeout(function () { 
-                    redirectUserDashboard(newUser.type); 
-                }, 1200);
-
-            }, 1200);
         });
     }
-
 });
-
-// ── SYSTÈME D'ALERTES ──
-function showAlert(type, message) {
-    var box = document.getElementById('alertBox');
-    if (box) {
-        box.className = 'alert alert-' + type + ' show';
-        box.textContent = message;
-    }
-}
