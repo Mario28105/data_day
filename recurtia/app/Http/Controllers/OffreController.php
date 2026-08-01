@@ -176,5 +176,15 @@ class OffreController extends Controller
         return view('offres.show', compact('offre'));
     }
 
+    public function formPostuler($id)
+    {
+
+    $offre = Offre::findOrFail($id);
+
+
+    return view('offres.postuler', compact('offre'));
+
+    }
+
 
 }

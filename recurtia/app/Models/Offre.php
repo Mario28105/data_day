@@ -17,7 +17,6 @@ class Offre extends Model
         'localisation',
     ];
 
-    // une offre peut avoir plusieurs candidatures
     public function candidatures()
     {
         return $this->hasMany(Candidature::class);

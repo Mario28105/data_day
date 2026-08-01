@@ -1,46 +1,138 @@
-<h1>Mes candidatures</h1>
+<!DOCTYPE html>
 
-@foreach($candidatures as $c)
+<html lang="fr">
 
-<div class="card p-3 mb-3">
+<head>
 
-    <h4>
-        {{ $c->offre->titre ?? 'Offre supprimée' }}
-    </h4>
-
-    <p>
-        <strong>Entreprise :</strong>
-        {{ $c->offre->entreprise ?? 'N/A' }}
-    </p>
+<meta charset="UTF-8">
 
 
-    <p>
-        <strong>Statut :</strong>
-        {{ $c->statut }}
-    </p>
+<title>Mes candidatures</title>
 
 
-    @if($c->cv)
+<style>
 
-        <a href="{{ asset('storage/'.$c->cv) }}"
-           target="_blank"
-           class="btn btn-success">
-            Voir mon CV
-        </a>
+body{
 
-    @endif
+font-family:Arial;
+
+background:#f5f7fb;
+
+padding:40px;
+
+}
 
 
-    <hr>
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+
+box-shadow:0 5px 20px #0002;
+
+}
 
 
-    <strong>Lettre de motivation :</strong>
+.status{
 
-    <p>
-        {{ $c->lettre_motivation }}
-    </p>
+background:#e6f7f1;
+
+color:#087857;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<a href="{{route('dashboard')}}">
+← Retour dashboard
+</a>
+
+
+
+<h1>
+Mes candidatures
+</h1>
+
+
+
+
+@forelse($candidatures as $candidature)
+
+
+
+<div class="card">
+
+
+<h2>
+
+{{$candidature->offre->titre}}
+
+</h2>
+
+
+
+<p>
+
+Entreprise :
+{{$candidature->offre->entreprise}}
+
+</p>
+
+
+
+<p>
+
+Envoyée le :
+
+{{$candidature->created_at->format('d/m/Y')}}
+
+</p>
+
+
+
+<span class="status">
+
+{{$candidature->statut}}
+
+</span>
+
 
 
 </div>
 
-@endforeach
+
+
+@empty
+
+
+<p>
+Aucune candidature pour le moment.
+</p>
+
+
+@endforelse
+
+
+
+</body>
+
+</html>

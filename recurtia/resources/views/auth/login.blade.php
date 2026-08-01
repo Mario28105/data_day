@@ -1,47 +1,336 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="fr">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+<title>Connexion - Recurtia</title>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+<style>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+body{
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#f2f5f9;
+
+}
+
+
+
+.container{
+
+    width:400px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+}
+
+
+
+.logo{
+
+    text-align:center;
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    margin-bottom:30px;
+
+    color:#0F1117;
+
+}
+
+
+.logo span{
+
+    color:#1D9E75;
+
+}
+
+
+
+h2{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    color:#111827;
+
+}
+
+
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+
+
+input{
+
+    width:100%;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+
+input:focus{
+
+    border-color:#1D9E75;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#1D9E75;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+}
+
+
+
+button:hover{
+
+    background:#0F6E56;
+
+}
+
+
+
+.links{
+
+    text-align:center;
+
+    margin-top:20px;
+
+}
+
+
+
+.links a{
+
+    color:#1D9E75;
+
+    text-decoration:none;
+
+}
+
+
+
+.home{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#555;
+
+}
+
+
+
+.error{
+
+    color:red;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="logo">
+
+Recurtia<span>.</span>
+
+</div>
+
+
+
+<h2>
+Connexion
+</h2>
+
+
+
+@if($errors->any())
+
+<div class="error">
+
+{{ $errors->first() }}
+
+</div>
+
+@endif
+
+
+
+
+<form method="POST" action="{{ route('login') }}">
+
+@csrf
+
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input 
+type="email"
+name="email"
+value="{{ old('email') }}"
+placeholder="exemple@gmail.com"
+required
+>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>Mot de passe</label>
+
+<input 
+type="password"
+name="password"
+placeholder="Votre mot de passe"
+required
+>
+
+</div>
+
+
+
+
+
+<button type="submit">
+
+Se connecter
+
+</button>
+
+
+
+</form>
+
+
+
+
+
+<div class="links">
+
+
+<p>
+
+Pas encore inscrit ?
+
+<a href="{{ route('register') }}">
+
+Créer un compte
+
+</a>
+
+</p>
+
+
+<a class="home" href="/">
+
+← Retour à l'accueil
+
+</a>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+</body>
+
+
+</html>

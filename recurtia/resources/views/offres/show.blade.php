@@ -1,90 +1,139 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <title>
-        {{ $offre->titre }}
-    </title>
-
-    <style>
-
-        body{
-            font-family:Arial;
-            background:#f2f5f9;
-            padding:40px;
-        }
+<title>{{ $offre->titre }}</title>
 
 
-        .card{
-
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            max-width:700px;
-            margin:auto;
-
-        }
+<style>
 
 
-        input, textarea{
+body{
 
-            width:100%;
-            padding:10px;
-            margin-top:10px;
+font-family:Arial;
 
-        }
+background:#f5f7fb;
 
+padding:40px;
 
-        button{
-
-            background:#1D9E75;
-            color:white;
-            border:none;
-            padding:12px 20px;
-            border-radius:8px;
-            cursor:pointer;
-
-        }
+}
 
 
-    </style>
+.card{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+max-width:700px;
+
+margin:auto;
+
+box-shadow:0 10px 30px #0002;
+
+}
+
+
+input,textarea{
+
+width:100%;
+
+padding:12px;
+
+margin:10px 0;
+
+border-radius:10px;
+
+border:1px solid #ddd;
+
+}
+
+
+button{
+
+background:#1D9E75;
+
+color:white;
+
+border:0;
+
+padding:15px 25px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+}
+
+
+a{
+
+text-decoration:none;
+
+color:#1D9E75;
+
+}
+
+
+
+</style>
+
 
 </head>
+
 
 
 <body>
 
 
+
 <div class="card">
 
 
+<a href="{{route('dashboard')}}">
+← Retour
+</a>
+
+
+
 <h1>
-{{ $offre->titre }}
+
+{{$offre->titre}}
+
 </h1>
 
 
-<p>
-Entreprise :
-{{ $offre->entreprise }}
-</p>
 
+<h3>
 
-<p>
-Localisation :
-{{ $offre->localisation }}
-</p>
+{{$offre->entreprise}}
+
+</h3>
+
 
 
 <p>
-{{ $offre->description }}
+
+{{$offre->localisation}}
+
 </p>
 
 
+
+<p>
+
+{{$offre->description}}
+
+</p>
 
 <hr>
+
 
 
 <h2>
@@ -93,9 +142,10 @@ Postuler
 
 
 
-<form action="{{ route('offres.postuler',$offre->id) }}"
-      method="POST"
-      enctype="multipart/form-data">
+
+<form action="{{route('candidatures.store',$offre->id)}}"
+method="POST"
+enctype="multipart/form-data">
 
 
 @csrf
@@ -103,13 +153,14 @@ Postuler
 
 
 <label>
-CV (PDF)
+Votre CV
 </label>
 
 
 <input type="file"
-       name="cv"
-       accept=".pdf">
+name="cv">
+
+
 
 
 
@@ -118,17 +169,19 @@ Lettre de motivation
 </label>
 
 
-<textarea 
+<textarea
 name="lettre_motivation"
-rows="5"></textarea>
+rows="6"></textarea>
 
 
 
-<button type="submit">
+
+<button>
 
 Envoyer ma candidature
 
 </button>
+
 
 
 </form>
@@ -136,6 +189,7 @@ Envoyer ma candidature
 
 
 </div>
+
 
 
 </body>

@@ -141,5 +141,9 @@
 
 </div>
 
+<a href="{{ route('offres.postuler.form',$offre->id) }}">
+    Postuler
+</a>
+
 
 @endsection
